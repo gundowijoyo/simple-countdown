@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: Monospace;
+  }
+  body {
+    background-color: #f2f2f2;
+  }
+   #countDown {
+    background-color:#1d9b65; 
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    border-radius:5px;
+
+    margin: 20px ;
+   } 
+   .flex-center {
+   display: grid;
+   grid-template-columns: repeat(4,1fr);
+   }
+   strong {
+     font-size: 0.8rem;
+   }
+   .grid {
+     display: grid;
+     background-color: white;
+     color:#252525;
+   margin:5px;
+   padding: 5px;
+   border-radius:5px;
+   }
+   .tac {
+     text-align: center;
+   }
+   header {
+     margin:50px 0 50px 0;
+   }
+   .sizes-1-8rem {
+     font-size: 1.8rem;
+   }
+   .sizes-1rem{
+     font-size: 1rem;
+   }
+   footer {
+     text-align: center;
+   }
+   a {
+     color:#1d9b65;
+   }
+  </style>
+  <title>Countdown</title>
+</head>
+<body>
+  
+ <audio src="tic.wav" id="audio"></audio>
+ 
+  <header>
+    <h1 class="tac">Simple Coundown </h1>
+  </header>
+  <main>
+  <div id="countDown">
+  </div>
+     </main>
+  
+  <footer>
+    <p>Copyright 2024.By Gun.<a href="">Open source</a></p>
+  </footer>   
+ <script>
+   function countDown(){
+ /*kita tampung objek new Date ke dalam variabel OBJECTDATE*/
+    let OBJECTDATE = new Date();
+    let DAY = 7-OBJECTDATE.getDay();
+    let HOURS = 24-OBJECTDATE.getHours();
+    let MINUTES = 59-OBJECTDATE.getMinutes();
+    let SECONDS = 59-OBJECTDATE.getSeconds();
+ document.getElementById('countDown').innerHTML = `<div class="flex-center">
+ <div class="grid">
+<p class="sizes-1-8rem">${DAY}</p>
+ <p class="sizes-1rem">day</p>
+ </div> 
+ <div class="grid">
+<p class="sizes-1-8rem">${ HOURS}</p>
+ <p class="sizes-1rem">Hours</p>
+ </div> 
+ <div class="grid">
+<p class="sizes-1-8rem">${MINUTES}</p>
+ <p class="sizes-1rem">Minutes</p>
+ </div> 
+ <div class="grid">
+<p class="sizes-1-8rem">${SECONDS}</p>
+ <p class="sizes-1rem">Seconds</p>
+ </div> 
+ </div>`
+}
+ countDown();
+setInterval(()=>{
+  countDown();
+},1000)
+
+let audio = document.getElementById('audio');
+
+document.addEventListener("click", function() {
+  audio.currentTime = 0;
+  audio.play();
+});
+audio.addEventListener("ended", function() {
+  audio.currentTime = 0;
+  audio.play();
+});
+
+ </script>
+</body>
+</html>
